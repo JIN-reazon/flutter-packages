@@ -134,6 +134,11 @@ abstract class VideoPlayerPlatform extends PlatformInterface {
   Future<void> cancelPreload(List<String> videoUrls) {
     throw UnimplementedError('cancelPreload() has not been implemented.');
   }
+
+  /// Cancels all ongoing preloading tasks.
+  Future<void> cancelAllPreloads() {
+    throw UnimplementedError('cancelAllPreloads() has not been implemented.');
+  }
 }
 
 class _PlaceholderImplementation extends VideoPlayerPlatform {}

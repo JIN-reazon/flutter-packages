@@ -472,6 +472,8 @@ public class Messages {
 
     void cancelPreload(@NonNull List<String> videoUrls);
 
+    void cancelAllPreloads();
+
     @NonNull 
     String getLookupKeyForAsset(@NonNull String asset, @Nullable String packageName);
 
@@ -610,6 +612,27 @@ public class Messages {
                 List<String> videoUrlsArg = (List<String>) args.get(0);
                 try {
                   api.cancelPreload(videoUrlsArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cancelAllPreloads" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                try {
+                  api.cancelAllPreloads();
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

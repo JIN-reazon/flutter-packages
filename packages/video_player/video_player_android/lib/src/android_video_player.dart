@@ -224,6 +224,11 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     return _api.cancelPreload(videoUrls);
   }
 
+  @override
+  Future<void> cancelAllPreloads() {
+    return _api.cancelAllPreloads();
+  }
+
   _PlayerInstance _playerWith({required int id}) {
     final _PlayerInstance? player = _players[id];
     return player ?? (throw StateError('No active player with ID $id.'));

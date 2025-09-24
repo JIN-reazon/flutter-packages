@@ -21,6 +21,8 @@ import io.flutter.view.TextureRegistry.SurfaceProducer;
  *
  * <p>It provides methods to control playback, adjust volume, and handle seeking.
  */
+
+@SuppressWarnings("this-escape")
 public abstract class VideoPlayer implements Messages.VideoPlayerInstanceApi {
   @NonNull protected final VideoPlayerCallbacks videoPlayerEvents;
   @Nullable protected final SurfaceProducer surfaceProducer;

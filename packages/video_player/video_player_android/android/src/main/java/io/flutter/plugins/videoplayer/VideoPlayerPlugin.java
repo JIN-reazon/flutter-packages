@@ -197,6 +197,11 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   }
 
   @Override
+  public void cancelAllPreloads() {
+    VideoPreloadManager.Companion.getInstance(flutterState.applicationContext).cancelAllPreloads();
+  }
+
+  @Override
   public @NonNull String getLookupKeyForAsset(@NonNull String asset, @Nullable String packageName) {
     return packageName == null
         ? flutterState.keyForAsset.get(asset)
