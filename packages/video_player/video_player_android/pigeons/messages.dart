@@ -51,6 +51,8 @@ abstract class AndroidVideoPlayerApi {
   int create(CreateMessage msg);
   void dispose(int playerId);
   void setMixWithOthers(bool mixWithOthers);
+  void preloadVideos(List<String> videoUrls);
+  void cancelPreload(List<String> videoUrls);
   String getLookupKeyForAsset(String asset, String? packageName);
 }
 

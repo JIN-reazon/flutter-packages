@@ -213,6 +213,17 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     return _api.setMixWithOthers(mixWithOthers);
   }
 
+
+  @override
+  Future<void> preloadVideos(List<String> videoUrls) {
+    return _api.preloadVideos(videoUrls);
+  }
+
+  @override
+  Future<void> cancelPreload(List<String> videoUrls) {
+    return _api.cancelPreload(videoUrls);
+  }
+
   _PlayerInstance _playerWith({required int id}) {
     final _PlayerInstance? player = _players[id];
     return player ?? (throw StateError('No active player with ID $id.'));

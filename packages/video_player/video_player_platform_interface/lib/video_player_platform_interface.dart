@@ -121,6 +121,19 @@ abstract class VideoPlayerPlatform extends PlatformInterface {
   Future<void> setWebOptions(int playerId, VideoPlayerWebOptions options) {
     throw UnimplementedError('setWebOptions() has not been implemented.');
   }
+
+  /// Preloads a list of videos.
+  ///
+  /// The plugin will start downloading the videos in the background and cache them
+  /// for future playback.
+  Future<void> preloadVideos(List<String> videoUrls) {
+    throw UnimplementedError('preloadVideos() has not been implemented.');
+  }
+
+  /// Cancels preloading for a list of videos.
+  Future<void> cancelPreload(List<String> videoUrls) {
+    throw UnimplementedError('cancelPreload() has not been implemented.');
+  }
 }
 
 class _PlaceholderImplementation extends VideoPlayerPlatform {}

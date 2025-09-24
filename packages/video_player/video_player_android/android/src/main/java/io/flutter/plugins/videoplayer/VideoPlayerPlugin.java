@@ -21,6 +21,7 @@ import io.flutter.plugins.videoplayer.platformview.PlatformVideoViewFactory;
 import io.flutter.plugins.videoplayer.platformview.PlatformViewVideoPlayer;
 import io.flutter.plugins.videoplayer.texture.TextureVideoPlayer;
 import io.flutter.view.TextureRegistry;
+import java.util.List;
 
 /** Android platform implementation of the VideoPlayerPlugin. */
 public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
@@ -183,6 +184,16 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   @Override
   public void setMixWithOthers(@NonNull Boolean mixWithOthers) {
     options.mixWithOthers = mixWithOthers;
+  }
+
+  @Override
+  public void preloadVideos(@NonNull List<String> videoUrls) {
+    VideoPreloadManager.Companion.getInstance(flutterState.applicationContext).preloadVideos(videoUrls);
+  }
+
+  @Override
+  public void cancelPreload(@NonNull List<String> videoUrls) {
+    VideoPreloadManager.Companion.getInstance(flutterState.applicationContext).cancelPreload(videoUrls);
   }
 
   @Override
