@@ -55,11 +55,17 @@ class VideoPreloadManager private constructor(private val applicationContext: Co
     }
 
     fun preloadVideos(urls: List<String>) {
-        for (url in urls) {
-            if (preloadingJobs.containsKey(url)) {
-                continue
-            }
+        val newUrlsToPreload = urls.toSet()
+        val currentPreloadingUrls = preloadingJobs.keys.toSet()
 
+        val urlsToCancel = currentPreloadingUrls - newUrlsToPreload
+        if (urlsToCancel.isNotEmpty()) {
+            Log.d(TAG, "Cancelling obsolete preloads for: $urlsToCancel")
+            cancelPreload(urlsToCancel.toList())
+        }
+
+        val urlsToStart = newUrlsToPreload - currentPreloadingUrls
+        for (url in urlsToStart) {
             val dataSpec = DataSpec.Builder()
                 .setUri(url.toUri())
                 .setPosition(0)
